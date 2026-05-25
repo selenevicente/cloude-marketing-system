@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Riel Americano — 01 Tradición</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background: #0A0A0A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-family: 'Plus Jakarta Sans', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* ── POST SHELL 540×540 ── */
+.post {
+  width: 540px;
+  height: 540px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* Photo background */
+.photo {
+  position: absolute;
+  inset: 0;
+  background: url('photos/post1-curtains.jpg') center top / cover no-repeat;
+}
+
+/* Gradient overlay: heavy left → lighter right */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right,
+      rgba(10,6,3,0.92) 0%,
+      rgba(10,6,3,0.82) 38%,
+      rgba(10,6,3,0.42) 68%,
+      rgba(10,6,3,0.10) 100%),
+    linear-gradient(to top,
+      rgba(6,3,1,0.55) 0%,
+      transparent 45%);
+}
+
+/* Content layer */
+.inner {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  padding: 38px 40px 34px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* ── TYPOGRAPHY ── */
+.eyebrow {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #C8102E;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+}
+
+.year-tag {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  color: rgba(255,255,255,0.28);
+  margin-bottom: 6px;
+}
+
+.headline {
+  font-size: 46px;
+  font-weight: 800;
+  line-height: 1.04;
+  letter-spacing: -1.5px;
+  color: #FFFFFF;
+}
+
+.red-line {
+  width: 28px;
+  height: 2px;
+  background: #C8102E;
+  margin: 20px 0 18px;
+}
+
+.sub {
+  font-size: 13.5px;
+  font-weight: 400;
+  line-height: 1.82;
+  color: rgba(255,255,255,0.58);
+}
+
+/* ── FOOTER ── */
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.logo-circle {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: #C8102E;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-r { font-size: 10.5px; font-weight: 900; color: #fff; line-height: 1; letter-spacing: 0.3px; }
+.logo-a { font-size: 3.2px; font-weight: 400; color: rgba(255,255,255,0.85); letter-spacing: 1.4px; margin-top: 1.5px; }
+.logo-name {
+  font-size: 8.5px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+}
+
+.slide-num {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  color: rgba(255,255,255,0.18);
+}
+</style>
+</head>
+<body>
+<div class="post">
+  <div class="photo"></div>
+  <div class="overlay"></div>
+  <div class="inner">
+
+    <div class="eyebrow">01 — Tradición</div>
+
+    <div class="body">
+      <div class="year-tag">1967 — 2026</div>
+      <h2 class="headline">Desde 1967<br>abriendo ventanas<br>argentinas.</h2>
+      <div class="red-line"></div>
+      <p class="sub">Más de cinco décadas<br>acompañando los espacios<br>que habitamos.</p>
+    </div>
+
+    <div class="footer">
+      <div class="logo">
+        <div class="logo-circle">
+          <span class="logo-r">RIEL</span>
+          <span class="logo-a">AMERICANO</span>
+        </div>
+        <span class="logo-name">Riel Americano</span>
+      </div>
+      <span class="slide-num">1 / 6</span>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

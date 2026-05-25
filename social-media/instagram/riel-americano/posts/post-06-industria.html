@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Riel Americano — 06 Industria Nacional</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background: #0A0A0A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-family: 'Plus Jakarta Sans', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.post {
+  width: 540px;
+  height: 540px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* Factory / industrial building — blue sky visible top */
+.photo {
+  position: absolute;
+  inset: 0;
+  background: url('photos/post6-factory.jpg') center 20% / cover no-repeat;
+}
+
+/* Dark bottom, bright top — factory reads through */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to top,
+      rgba(6,6,10,0.98) 0%,
+      rgba(6,6,10,0.90) 38%,
+      rgba(6,6,10,0.50) 58%,
+      rgba(6,6,10,0.15) 75%,
+      rgba(6,6,10,0.04) 100%);
+}
+
+/* Thin red top bar — national flag nod */
+.top-bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: #C8102E;
+  z-index: 8;
+}
+
+/* ── FLOATING STAT CARDS ── */
+.card {
+  position: absolute;
+  z-index: 12;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(6px);
+  border-radius: 10px;
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  box-shadow: 0 6px 24px rgba(0,0,0,0.45), 0 1px 5px rgba(0,0,0,0.25);
+  min-width: 118px;
+}
+
+.card-num {
+  font-size: 22px;
+  font-weight: 800;
+  color: #C8102E;
+  line-height: 1;
+  letter-spacing: -0.8px;
+}
+
+.card-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #444;
+  line-height: 1.35;
+}
+
+/* Card positions — staggered across the factory photo area */
+.c1 { top: 58px;  left: 22px;  }   /* empleados — top left */
+.c2 { top: 58px;  right: 22px; }   /* distribuidores — top right */
+.c3 { top: 178px; left: 22px;  }   /* cortinas/mes — mid left */
+.c4 { top: 178px; right: 22px; }   /* Argentina — mid right */
+
+/* SVG lines connecting cards to factory detail point */
+.lines-svg {
+  position: absolute;
+  inset: 0;
+  width: 540px;
+  height: 540px;
+  z-index: 8;
+  pointer-events: none;
+}
+
+/* ── INNER TEXT LAYER ── */
+.inner {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  padding: 32px 38px 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  pointer-events: none;
+}
+
+.eyebrow {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #C8102E;
+  /* pushed right so it doesn't overlap top-left card */
+  align-self: flex-end;
+  margin-right: 2px;
+}
+
+.bottom-block {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.headline {
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.10;
+  letter-spacing: -0.9px;
+  color: #FFFFFF;
+}
+
+.sub {
+  font-size: 11.5px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.2px;
+  line-height: 1.7;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo { display: flex; align-items: center; gap: 9px; }
+.logo-circle {
+  width: 34px; height: 34px; border-radius: 50%; background: #C8102E;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.logo-r { font-size: 10px; font-weight: 900; color: #fff; line-height: 1; }
+.logo-a { font-size: 3px; font-weight: 400; color: rgba(255,255,255,0.85); letter-spacing: 1.3px; margin-top: 1.5px; }
+.logo-name { font-size: 8px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.38); }
+.slide-num { font-size: 9px; font-weight: 500; letter-spacing: 2px; color: rgba(255,255,255,0.16); }
+</style>
+</head>
+<body>
+<div class="post">
+  <div class="top-bar"></div>
+  <div class="photo"></div>
+  <div class="overlay"></div>
+
+  <!-- Connecting lines from cards to factory building center -->
+  <svg class="lines-svg" viewBox="0 0 540 540">
+    <!-- Central anchor point on factory building -->
+    <circle cx="270" cy="148" r="5" fill="#C8102E" opacity="0.80"/>
+
+    <!-- Card 1 (top-left) → center -->
+    <line x1="140" y1="95" x2="265" y2="148" stroke="white" stroke-width="1.2" opacity="0.45"/>
+
+    <!-- Card 2 (top-right) → center -->
+    <line x1="400" y1="95" x2="275" y2="148" stroke="white" stroke-width="1.2" opacity="0.45"/>
+
+    <!-- Card 3 (mid-left) → center -->
+    <line x1="140" y1="210" x2="265" y2="152" stroke="white" stroke-width="1.2" opacity="0.45"/>
+
+    <!-- Card 4 (mid-right) → center -->
+    <line x1="400" y1="210" x2="275" y2="152" stroke="white" stroke-width="1.2" opacity="0.45"/>
+  </svg>
+
+  <!-- Floating stat cards -->
+  <div class="card c1">
+    <div class="card-num">130</div>
+    <div class="card-label">empleados<br>en planta</div>
+  </div>
+
+  <div class="card c2">
+    <div class="card-num">1000+</div>
+    <div class="card-label">distribuidores<br>en Argentina</div>
+  </div>
+
+  <div class="card c3">
+    <div class="card-num">15 K</div>
+    <div class="card-label">cortinas<br>por mes</div>
+  </div>
+
+  <div class="card c4">
+    <div class="card-num">100%</div>
+    <div class="card-label">fabricación<br>argentina</div>
+  </div>
+
+  <!-- Text layer -->
+  <div class="inner">
+    <div class="eyebrow">06 — Industria Nacional</div>
+
+    <div class="bottom-block">
+      <h2 class="headline">De nuestra planta<br>a tu ventana.</h2>
+      <p class="sub">Producción nacional con escala industrial.<br>Cada cortina sale de nuestras manos.</p>
+
+      <div class="footer">
+        <div class="logo">
+          <div class="logo-circle">
+            <span class="logo-r">RIEL</span>
+            <span class="logo-a">AMERICANO</span>
+          </div>
+          <span class="logo-name">Riel Americano</span>
+        </div>
+        <span class="slide-num">6 / 6</span>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Riel Americano — 05 Oficio</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400;1,700&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background: #0A0A0A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-family: 'Plus Jakarta Sans', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.post {
+  width: 540px;
+  height: 540px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* Seamstress hands fill frame — photo top visible, gradient heavy bottom */
+.photo {
+  position: absolute;
+  inset: 0;
+  background: url('photos/post5-hands.jpg') center 30% / cover no-repeat;
+}
+
+/* Bottom-heavy overlay — photo shows top, text readable bottom */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to top,
+      rgba(12,7,2,0.97) 0%,
+      rgba(12,7,2,0.92) 32%,
+      rgba(12,7,2,0.68) 52%,
+      rgba(12,7,2,0.28) 70%,
+      rgba(12,7,2,0.06) 100%);
+}
+
+.inner {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  padding: 36px 42px 36px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.eyebrow {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #C8102E;
+}
+
+.body { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; padding-bottom: 10px; }
+
+/* Big decorative quote mark */
+.glyph {
+  font-size: 88px;
+  font-weight: 800;
+  color: #C8102E;
+  line-height: 0.72;
+  display: block;
+  margin-bottom: 10px;
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+.quote {
+  font-size: 28px;
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1.22;
+  color: #FFFFFF;
+  letter-spacing: -0.4px;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(255,255,255,0.08);
+  margin: 22px 0 16px;
+}
+
+.sig {
+  font-size: 11.5px;
+  font-style: italic;
+  color: rgba(255,255,255,0.40);
+  font-weight: 400;
+}
+
+.sig strong {
+  font-style: normal;
+  font-weight: 600;
+  color: rgba(255,255,255,0.68);
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo { display: flex; align-items: center; gap: 9px; }
+.logo-circle {
+  width: 34px; height: 34px; border-radius: 50%; background: #C8102E;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.logo-r { font-size: 10px; font-weight: 900; color: #fff; line-height: 1; }
+.logo-a { font-size: 3px; font-weight: 400; color: rgba(255,255,255,0.85); letter-spacing: 1.3px; margin-top: 1.5px; }
+.logo-name { font-size: 8px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.38); }
+.slide-num { font-size: 9px; font-weight: 500; letter-spacing: 2px; color: rgba(255,255,255,0.16); }
+</style>
+</head>
+<body>
+<div class="post">
+  <div class="photo"></div>
+  <div class="overlay"></div>
+
+  <div class="inner">
+    <div class="eyebrow">05 — Oficio</div>
+
+    <div class="body">
+      <span class="glyph">&ldquo;</span>
+      <p class="quote">Una cortina bien hecha<br>se nota cuando<br>sale el sol.</p>
+      <div class="divider"></div>
+      <p class="sig">— <strong>Hugo Fernández</strong> &nbsp;·&nbsp; 42 años en Riel Americano</p>
+    </div>
+
+    <div class="footer">
+      <div class="logo">
+        <div class="logo-circle">
+          <span class="logo-r">RIEL</span>
+          <span class="logo-a">AMERICANO</span>
+        </div>
+        <span class="logo-name">Riel Americano</span>
+      </div>
+      <span class="slide-num">5 / 6</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>

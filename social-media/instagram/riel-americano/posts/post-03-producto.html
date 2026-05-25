@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Riel Americano — 03 Sunscreen VX</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background: #0A0A0A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  font-family: 'Plus Jakarta Sans', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* ── SPLIT LAYOUT — inspired by Metrilux "Roller Black Out" ── */
+.post {
+  width: 540px;
+  height: 540px;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: #F7F3ED;
+}
+
+/* Photo occupies right 55% */
+.photo {
+  position: absolute;
+  top: 0; right: 0;
+  width: 58%;
+  height: 100%;
+  background: url('photos/post3-roller.jpg') center center / cover no-repeat;
+}
+
+/* Gradient fade from left panel into photo */
+.photo-fade {
+  position: absolute;
+  top: 0; left: 22%;
+  width: 25%;
+  height: 100%;
+  background: linear-gradient(to right, #F7F3ED 0%, transparent 100%);
+  z-index: 2;
+}
+
+/* Left text panel */
+.panel {
+  position: absolute;
+  top: 0; left: 0;
+  width: 52%;
+  height: 100%;
+  z-index: 5;
+  padding: 40px 0 36px 38px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Bracket bar (like Metrilux feature bracket) */
+.bracket {
+  position: absolute;
+  left: 38px;
+  top: 240px;
+  width: 3px;
+  height: 118px;
+  background: #C8102E;
+}
+
+.eyebrow {
+  font-size: 8.5px;
+  font-weight: 600;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #C8102E;
+}
+
+.body { flex: 1; display: flex; flex-direction: column; justify-content: center; padding-right: 10px; }
+
+.product-label {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: #C8102E;
+  margin-bottom: 12px;
+}
+
+.headline {
+  font-size: 34px;
+  font-weight: 800;
+  line-height: 1.06;
+  letter-spacing: -1px;
+  color: #0D0D0D;
+  margin-bottom: 18px;
+}
+
+.red-line {
+  width: 22px;
+  height: 2px;
+  background: #C8102E;
+  margin-bottom: 22px;
+}
+
+/* Feature list (like Metrilux) */
+.features { display: flex; flex-direction: column; gap: 12px; padding-left: 14px; }
+
+.feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+}
+
+.feat-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 1.5px solid #0D0D0D;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+.feat-text {
+  font-size: 11px;
+  font-weight: 500;
+  color: #2A2A2A;
+  line-height: 1.5;
+}
+
+.feat-text span {
+  display: block;
+  font-size: 9px;
+  color: #888;
+  font-weight: 400;
+}
+
+/* Footer */
+.footer {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo-circle {
+  width: 30px; height: 30px; border-radius: 50%; background: #C8102E;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.logo-r { font-size: 9px; font-weight: 900; color: #fff; line-height: 1; }
+.logo-a { font-size: 2.8px; font-weight: 400; color: rgba(255,255,255,0.85); letter-spacing: 1.2px; margin-top: 1px; }
+.logo-name { font-size: 8px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(13,13,13,0.40); }
+
+.slide-wrap {
+  position: absolute;
+  bottom: 36px;
+  right: 20px;
+  z-index: 10;
+}
+.slide-num { font-size: 9px; font-weight: 500; letter-spacing: 2px; color: rgba(13,13,13,0.18); }
+</style>
+</head>
+<body>
+<div class="post">
+  <div class="photo"></div>
+  <div class="photo-fade"></div>
+  <div class="bracket"></div>
+
+  <div class="panel">
+    <div class="eyebrow">03 — Producto</div>
+
+    <div class="body">
+      <div class="product-label">Multi-store Sunscreen VX</div>
+      <h2 class="headline">Una solución<br>para cada<br>ventana.</h2>
+      <div class="red-line"></div>
+
+      <div class="features">
+        <div class="feature">
+          <div class="feat-icon">☀</div>
+          <div class="feat-text">
+            Controla la luz de la habitación
+            <span>270 telas disponibles</span>
+          </div>
+        </div>
+        <div class="feature">
+          <div class="feat-icon">⊞</div>
+          <div class="feat-text">
+            Catálogo más amplio de Argentina
+            <span>2400 productos</span>
+          </div>
+        </div>
+        <div class="feature">
+          <div class="feat-icon">◎</div>
+          <div class="feat-text">
+            Diseño a medida para cada espacio
+            <span>Instalación profesional</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer">
+      <div class="logo-circle">
+        <span class="logo-r">RIEL</span>
+        <span class="logo-a">AMERICANO</span>
+      </div>
+      <span class="logo-name">Riel Americano</span>
+    </div>
+  </div>
+
+  <div class="slide-wrap">
+    <span class="slide-num">3 / 6</span>
+  </div>
+</div>
+</body>
+</html>
