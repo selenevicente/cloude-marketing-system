@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1200">
+  <title>Riel Americano — Carrusel Instagram · Arte Final</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --red:        #C8102E;
+      --red-dim:    rgba(200, 16, 46, 0.65);
+      --white:      #FFFFFF;
+      --off-white:  #F5F0EA;
+      --dark:       #0F0F0F;
+      --font:       'Plus Jakarta Sans', -apple-system, 'Helvetica Neue', sans-serif;
+    }
+
+    body {
+      background: #0A0A0A;
+      font-family: var(--font);
+      padding: 56px 40px 80px;
+    }
+
+    /* ─── PAGE HEADER ─── */
+    .page-header {
+      text-align: center;
+      margin-bottom: 52px;
+    }
+    .page-header .brand-tag {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--red);
+      border: 1px solid var(--red-dim);
+      padding: 5px 14px;
+      margin-bottom: 20px;
+    }
+    .page-header h1 {
+      font-size: 30px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.8px;
+      margin-bottom: 10px;
+    }
+    .page-header p {
+      font-size: 11px;
+      color: #3A3A3A;
+      letter-spacing: 0.5px;
+      line-height: 1.8;
+    }
+
+    /* ─── GRID ─── */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 540px);
+      gap: 24px;
+      justify-content: center;
+      max-width: 1130px;
+      margin: 0 auto;
+    }
+
+    /* ─── POST SHELL ─── */
+    .post {
+      width: 540px;
+      height: 540px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .post-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+
+    /* Vignette overlay */
+    .post-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, transparent 45%, rgba(0,0,0,0.55) 100%);
+      z-index: 1;
+    }
+
+    .post-inner {
+      position: absolute;
+      inset: 0;
+      z-index: 10;
+      padding: 46px 48px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* ─── BACKGROUNDS ─── */
+
+    /* POST 1: Warm dark interior — amber afternoon */
+    .post-1 .post-bg {
+      background:
+        radial-gradient(ellipse at 80% 15%, rgba(210, 140, 55, 0.22) 0%, transparent 50%),
+        radial-gradient(ellipse at 10% 85%, rgba(140, 80, 25, 0.14) 0%, transparent 45%),
+        linear-gradient(158deg, #1C1108 0%, #2E1C0E 38%, #231508 65%, #170E05 100%);
+    }
+
+    /* POST 2: Deep navy — tech, precision */
+    .post-2 .post-bg {
+      background:
+        radial-gradient(ellipse at 70% 25%, rgba(60, 100, 200, 0.07) 0%, transparent 50%),
+        radial-gradient(ellipse at 20% 80%, rgba(200, 16, 46, 0.04) 0%, transparent 45%),
+        linear-gradient(155deg, #060810 0%, #0C1220 45%, #080B18 100%);
+    }
+    /* Tech grid overlay for POST 2 */
+    .post-2 .post-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(60,100,200,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(60,100,200,0.035) 1px, transparent 1px);
+      background-size: 44px 44px;
+      z-index: 0;
+    }
+
+    /* POST 3: Light editorial — cream/ecru */
+    .post-3 .post-bg {
+      background:
+        radial-gradient(ellipse at 82% 10%, rgba(255, 240, 200, 0.9) 0%, rgba(250, 235, 195, 0.5) 35%, transparent 65%),
+        radial-gradient(ellipse at 15% 92%, rgba(215, 200, 175, 0.55) 0%, transparent 45%),
+        linear-gradient(155deg, #FAFAF5 0%, #F4EDE2 45%, #EDE4D6 100%);
+    }
+    /* Window light top-right for POST 3 */
+    .post-3 .post-bg::after {
+      background: radial-gradient(ellipse at 88% 5%, rgba(255, 245, 215, 0.7) 0%, transparent 45%);
+    }
+
+    /* POST 4: Pure black luxury */
+    .post-4 .post-bg {
+      background:
+        radial-gradient(ellipse at 50% 68%, rgba(170, 140, 65, 0.045) 0%, transparent 55%),
+        linear-gradient(155deg, #070707 0%, #111111 50%, #080808 100%);
+    }
+    .post-4 .post-bg::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to bottom, rgba(255,255,255,0.015) 0%, transparent 40%);
+      z-index: 0;
+    }
+
+    /* POST 5: Deep amber-charcoal — human, warm */
+    .post-5 .post-bg {
+      background:
+        radial-gradient(ellipse at 62% 32%, rgba(210, 135, 45, 0.16) 0%, transparent 50%),
+        radial-gradient(ellipse at 22% 78%, rgba(165, 90, 20, 0.09) 0%, transparent 45%),
+        linear-gradient(152deg, #160C03 0%, #261508 42%, #1D1108 100%);
+    }
+
+    /* POST 6: Industrial slate-blue */
+    .post-6 .post-bg {
+      background:
+        radial-gradient(ellipse at 50% 0%, rgba(160, 205, 240, 0.065) 0%, transparent 50%),
+        radial-gradient(ellipse at 85% 85%, rgba(200, 16, 46, 0.04) 0%, transparent 40%),
+        linear-gradient(155deg, #0D1B2B 0%, #172639 50%, #0E1E2E 100%);
+    }
+
+    /* ─── TYPOGRAPHY — SHARED ─── */
+
+    .eyebrow {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 3.8px;
+      text-transform: uppercase;
+      color: var(--red);
+    }
+
+    .body-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .headline {
+      font-weight: 800;
+      line-height: 1.07;
+      letter-spacing: -1px;
+    }
+
+    /* dark posts */
+    .dk .headline { color: #FFFFFF; font-size: 40px; }
+    .dk .subtext  { color: rgba(255,255,255,0.58); font-size: 13.5px; font-weight: 400; line-height: 1.8; }
+
+    /* light post (POST 3) */
+    .lt .headline { color: #0D0D0D; font-size: 40px; }
+    .lt .subtext  { color: rgba(13,13,13,0.55); font-size: 13.5px; font-weight: 400; line-height: 1.8; }
+    .lt .eyebrow  { color: var(--red); }
+
+    .accent-bar {
+      width: 26px;
+      height: 2px;
+      background: var(--red);
+      margin: 22px 0 20px;
+    }
+
+    /* ─── POST 1 specifics ─── */
+    .p1-year {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 3px;
+      color: rgba(255,255,255,0.28);
+      margin-bottom: 6px;
+    }
+
+    /* ─── POST 2 specifics ─── */
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 22px;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid rgba(255,255,255,0.14);
+      padding: 5px 11px;
+      font-size: 9.5px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.72);
+    }
+    .badge-red {
+      border-color: var(--red-dim);
+      color: var(--red);
+    }
+    .p2-sub {
+      font-size: 12px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.4);
+      margin-top: 18px;
+      letter-spacing: 0.5px;
+    }
+
+    /* ─── POST 3 specifics ─── */
+    .product-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 16px;
+    }
+    .spec-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 18px;
+    }
+    .spec-item {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      color: rgba(13,13,13,0.45);
+    }
+    .spec-dot {
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: rgba(13,13,13,0.2);
+    }
+
+    /* ─── POST 4 specifics ─── */
+    .sponsor-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      border: 1px solid rgba(255,255,255,0.1);
+      padding: 8px 14px;
+      margin-top: 24px;
+      width: fit-content;
+    }
+    .pill-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--red);
+      flex-shrink: 0;
+    }
+    .pill-text {
+      font-size: 8.5px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.6);
+    }
+    .p4-sub {
+      font-size: 12px;
+      color: rgba(255,255,255,0.35);
+      margin-top: 12px;
+      letter-spacing: 0.5px;
+    }
+
+    /* ─── POST 5 specifics ─── */
+    .quote-glyph {
+      font-size: 100px;
+      font-weight: 800;
+      color: var(--red);
+      line-height: 0.75;
+      display: block;
+      margin-bottom: 10px;
+      font-family: Georgia, serif;
+    }
+    .quote-body {
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1.22;
+      color: #FFFFFF;
+      letter-spacing: -0.3px;
+      font-style: italic;
+    }
+    .signature {
+      font-size: 11.5px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.4);
+      font-style: italic;
+      margin-top: 26px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .signature strong {
+      font-weight: 600;
+      color: rgba(255,255,255,0.68);
+      font-style: normal;
+    }
+
+    /* ─── POST 6 specifics ─── */
+    .stats-row {
+      display: flex;
+      gap: 0;
+      margin-top: 30px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(255,255,255,0.09);
+    }
+    .stat {
+      flex: 1;
+    }
+    .stat:not(:last-child) {
+      padding-right: 22px;
+      margin-right: 22px;
+      border-right: 1px solid rgba(255,255,255,0.09);
+    }
+    .stat-num {
+      font-size: 30px;
+      font-weight: 800;
+      color: #FFFFFF;
+      letter-spacing: -1.5px;
+      line-height: 1;
+    }
+    .stat-lbl {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 2.2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.38);
+      margin-top: 5px;
+    }
+    .arg-flag {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid rgba(200, 16, 46, 0.3);
+    }
+
+    /* ─── FOOTER ─── */
+    .post-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo-mark {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .logo-circle {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--red);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+
+    .logo-r {
+      font-size: 11.5px;
+      font-weight: 900;
+      color: #FFFFFF;
+      letter-spacing: 0.5px;
+      line-height: 1;
+    }
+
+    .logo-a {
+      font-size: 3.8px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.9);
+      letter-spacing: 1.8px;
+      line-height: 1;
+      margin-top: 1px;
+    }
+
+    .logo-name {
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+    }
+
+    .dk .logo-name { color: rgba(255,255,255,0.55); }
+    .lt .logo-name { color: rgba(13,13,13,0.45); }
+
+    .slide-num {
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 2px;
+    }
+
+    .dk .slide-num { color: rgba(255,255,255,0.2); }
+    .lt .slide-num { color: rgba(13,13,13,0.18); }
+
+    /* ─── POST 3: override vignette ─── */
+    .post-3 .post-bg::after {
+      background: radial-gradient(ellipse at 85% 5%, rgba(255,245,210,0.6) 0%, transparent 45%),
+                  radial-gradient(ellipse at 15% 95%, rgba(210,195,170,0.3) 0%, transparent 40%);
+    }
+
+    /* ─── CAPTION BLOCK ─── */
+    .caption-block {
+      background: #111;
+      border-left: 3px solid var(--red);
+      padding: 18px 22px;
+      margin-top: 4px;
+    }
+    .caption-label {
+      font-size: 8px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 8px;
+    }
+    .caption-text {
+      font-size: 12px;
+      color: #5A5A5A;
+      line-height: 1.75;
+    }
+    .caption-text em {
+      color: #888;
+      font-style: normal;
+    }
+
+    /* ─── SECTION LABEL ─── */
+    .section-wrap {
+      margin-bottom: 8px;
+    }
+    .post-label {
+      font-size: 8px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #2A2A2A;
+      padding: 6px 0;
+      margin-bottom: 6px;
+    }
+
+    /* ─── PAGE FOOTER ─── */
+    .page-footer {
+      text-align: center;
+      margin-top: 60px;
+      padding-top: 28px;
+      border-top: 1px solid #181818;
+    }
+    .page-footer p {
+      font-size: 10px;
+      color: #2D2D2D;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+    .page-footer .export-note {
+      font-size: 10px;
+      color: #3A3A3A;
+      background: #111;
+      display: inline-block;
+      padding: 8px 18px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─────────────────────────────── PAGE HEADER ─────────────────────────────── -->
+<div class="page-header">
+  <div class="brand-tag">Riel Americano S.A. · Buenos Aires</div>
+  <h1>Carrusel Instagram — Arte Final</h1>
+  <p>6 posts · Sistema visual unificado · 1080 × 1080 px · Tipografía: Neue Montreal (Plus Jakarta Sans)<br>
+  Paleta: #C8102E · #0F0F0F · #FFFFFF · #F4EDE2 · 2026</p>
+</div>
+
+<!-- ─────────────────────────────── GRID ─────────────────────────────── -->
+<div class="grid">
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       POST 1 — TRADICIÓN
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="section-wrap">
+    <div class="post-label">POST 01 — Tradición</div>
+    <div class="post post-1 dk">
+      <div class="post-bg"></div>
+      <div class="post-inner">
+
+        <div class="eyebrow">01 — Tradición</div>
+
+        <div class="body-section">
+          <div class="p1-year">1967 — 2026</div>
+          <h2 class="headline">Desde 1967<br>abriendo ventanas<br>argentinas.</h2>
+          <div class="accent-bar"></div>
+          <p class="subtext">Más de cinco décadas<br>acompañando los espacios<br>que habitamos.</p>
+        </div>
+
+        <div class="post-footer">
+          <div class="logo-mark">
+            <div class="logo-circle">
+              <span class="logo-r">RIEL</span>
+              <span class="logo-a">AMERICANO</span>
+            </div>
+            <span class="logo-name">Riel Americano</span>
+          </div>
+          <span class="slide-num">1 / 6</span>
+        </div>
+
+      </div>
+    </div>
+    <div class="caption-block">
+      <div class="caption-label">Caption Instagram</div>
+      <div class="caption-text">
+        Hay marcas que nacen. Y hay marcas que permanecen.<br>
+        Desde 1967, Riel Americano acompañó cada ventana, cada proyecto, cada hogar argentino.<br>
+        <em>🏭 San Martín, Buenos Aires · #RielAmericano #DiseñoArgentino #Tradición</em>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       POST 2 — DOMÓTICA
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="section-wrap">
+    <div class="post-label">POST 02 — Innovación / Domótica</div>
+    <div class="post post-2 dk">
+      <div class="post-bg"></div>
+      <div class="post-inner">
+
+        <div class="eyebrow">02 — Innovación</div>
+
+        <div class="body-section">
+          <h2 class="headline">La domótica<br>también puede<br>ser argentina.</h2>
+          <div class="badges">
+            <span class="badge">Control por voz</span>
+            <span class="badge">Smart Bridge</span>
+            <span class="badge">iOS + Android</span>
+            <span class="badge badge-red">Google Home · Alexa</span>
+          </div>
+          <p class="p2-sub">Automatizá tus cortinas desde donde estés.</p>
+        </div>
+
+        <div class="post-footer">
+          <div class="logo-mark">
+            <div class="logo-circle">
+              <span class="logo-r">RIEL</span>
+              <span class="logo-a">AMERICANO</span>
+            </div>
+            <span class="logo-name">Riel Americano</span>
+          </div>
+          <span class="slide-num">2 / 6</span>
+        </div>
+
+      </div>
+    </div>
+    <div class="caption-block">
+      <div class="caption-label">Caption Instagram</div>
+      <div class="caption-text">
+        Tu hogar inteligente habla español. Smart Bridge de Riel Americano —<br>
+        tecnología de automatización 100% argentina para controlar tus cortinas con voz, teléfono o rutina.<br>
+        <em>✅ iOS & Android · ✅ Google Home · ✅ Amazon Alexa · #Domótica #SmartHome #RielAmericano</em>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       POST 3 — PRODUCTO (LIGHT)
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="section-wrap">
+    <div class="post-label">POST 03 — Producto en contexto</div>
+    <div class="post post-3 lt">
+      <div class="post-bg"></div>
+      <div class="post-inner">
+
+        <div class="eyebrow">03 — Producto</div>
+
+        <div class="body-section">
+          <div class="product-label">Multi-store Sunscreen VX</div>
+          <h2 class="headline">Una solución<br>para cada<br>ventana.</h2>
+          <div class="accent-bar"></div>
+          <div class="spec-row">
+            <span class="spec-item">270 telas</span>
+            <div class="spec-dot"></div>
+            <span class="spec-item">2400 productos</span>
+            <div class="spec-dot"></div>
+            <span class="spec-item">Control total de la luz</span>
+          </div>
+        </div>
+
+        <div class="post-footer">
+          <div class="logo-mark">
+            <div class="logo-circle">
+              <span class="logo-r">RIEL</span>
+              <span class="logo-a">AMERICANO</span>
+            </div>
+            <span class="logo-name">Riel Americano</span>
+          </div>
+          <span class="slide-num">3 / 6</span>
+        </div>
+
+      </div>
+    </div>
+    <div class="caption-block">
+      <div class="caption-label">Caption Instagram</div>
+      <div class="caption-text">
+        Cada espacio es distinto. Cada ventana tiene su historia.<br>
+        Por eso desarrollamos el catálogo más amplio de Argentina: 270 telas, más de 2400 productos.<br>
+        <em>🌞 Controlá la luz. Definí el ambiente. · #SunscreenVX #RielAmericano #Interiorismo</em>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       POST 4 — DISEÑO & EVENTOS
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="section-wrap">
+    <div class="post-label">POST 04 — Diseño & Eventos · Casa FOA</div>
+    <div class="post post-4 dk">
+      <div class="post-bg"></div>
+      <div class="post-inner">
+
+        <div class="eyebrow">04 — Diseño & Eventos</div>
+
+        <div class="body-section">
+          <h2 class="headline">Donde el diseño<br>abre sus<br>ventanas.</h2>
+          <div class="sponsor-pill">
+            <div class="pill-dot"></div>
+            <span class="pill-text">Sponsor oficial · Casa FOA · Estilo Pilar</span>
+          </div>
+          <p class="p4-sub">12 años acompañando el diseño argentino.</p>
+        </div>
+
+        <div class="post-footer">
+          <div class="logo-mark">
+            <div class="logo-circle">
+              <span class="logo-r">RIEL</span>
+              <span class="logo-a">AMERICANO</span>
+            </div>
+            <span class="logo-name">Riel Americano</span>
+          </div>
+          <span class="slide-num">4 / 6</span>
+        </div>
+
+      </div>
+    </div>
+    <div class="caption-block">
+      <div class="caption-label">Caption Instagram</div>
+      <div class="caption-text">
+        Los espacios más admirados del diseño argentino tienen algo en común. Riel Americano.<br>
+        Desde hace 12 años somos parte de Casa FOA y Estilo Pilar — no como proveedor, como referente.<br>
+        <em>#CasaFOA #EstiloPilar #DiseñoArgentino #SponsorOficial #RielAmericano</em>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       POST 5 — PERSONAS & OFICIO
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="section-wrap">
+    <div class="post-label">POST 05 — Personas / Oficio</div>
+    <div class="post post-5 dk">
+      <div class="post-bg"></div>
+      <div class="post-inner">
+
+        <div class="eyebrow">05 — Oficio</div>
+
+        <div class="body-section">
+          <span class="quote-glyph">&ldquo;</span>
+          <p class="quote-body">Una cortina bien hecha se nota cuando sale el sol.</p>
+          <p class="signature">
+            — <strong>Hugo Fernández</strong> &nbsp;·&nbsp; 42 años en Riel Americano
+          </p>
+        </div>
+
+        <div class="post-footer">
+          <div class="logo-mark">
+            <div class="logo-circle">
+              <span class="logo-r">RIEL</span>
+              <span class="logo-a">AMERICANO</span>
+            </div>
+            <span class="logo-name">Riel Americano</span>
+          </div>
+          <span class="slide-num">5 / 6</span>
+        </div>
+
+      </div>
+    </div>
+    <div class="caption-block">
+      <div class="caption-label">Caption Instagram</div>
+      <div class="caption-text">
+        Hay saberes que no se aprenden en un manual. Se acumulan en las manos, en la tela, en los años.<br>
+        Hugo lleva 42 años en nuestra planta de San Martín. Eso es Riel Americano.<br>
+        <em>Oficio argentino de generación en generación. · #OficioArgentino #MadeInArgentina #RielAmericano</em>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ═══════════════════════════════════════════════════════════
+       POST 6 — INDUSTRIA NACIONAL
+       ═══════════════════════════════════════════════════════════ -->
+  <div class="section-wrap">
+    <div class="post-label">POST 06 — Industria Nacional</div>
+    <div class="post post-6 dk">
+      <div class="post-bg"></div>
+      <div class="post-inner">
+
+        <div class="eyebrow">06 — Industria Nacional</div>
+
+        <div class="body-section">
+          <h2 class="headline">De nuestra planta<br>a tu ventana.</h2>
+          <div class="stats-row">
+            <div class="stat">
+              <div class="stat-num">130</div>
+              <div class="stat-lbl">Empleados</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">1.000<span style="font-size:18px;letter-spacing:-1px;">+</span></div>
+              <div class="stat-lbl">Distribuidores</div>
+            </div>
+            <div class="stat">
+              <div class="stat-num">15k</div>
+              <div class="stat-lbl">Cortinas/mes</div>
+            </div>
+          </div>
+          <div class="arg-flag">100 % Argentina · San Martín, Buenos Aires</div>
+        </div>
+
+        <div class="post-footer">
+          <div class="logo-mark">
+            <div class="logo-circle">
+              <span class="logo-r">RIEL</span>
+              <span class="logo-a">AMERICANO</span>
+            </div>
+            <span class="logo-name">Riel Americano</span>
+          </div>
+          <span class="slide-num">6 / 6</span>
+        </div>
+
+      </div>
+    </div>
+    <div class="caption-block">
+      <div class="caption-label">Caption Instagram</div>
+      <div class="caption-text">
+        No hay intermediarios entre nuestra fábrica y el espacio que querés vestir.<br>
+        130 personas comprometidas. 1000 distribuidores en todo el país. Industria nacional, calidad sin excusas.<br>
+        <em>#RielAmericano #IndustriaArgentina #HechoEnArgentina #SanMartín</em>
+      </div>
+    </div>
+  </div>
+
+
+</div><!-- /grid -->
+
+<!-- ─────────────────────────────── PAGE FOOTER ─────────────────────────────── -->
+<div class="page-footer">
+  <p>RIEL AMERICANO S.A. · Dirección de Arte · Carrusel Instagram 2026</p>
+  <p>Sistema visual: #C8102E · #0F0F0F · #FFFFFF · #F4EDE2 · Plus Jakarta Sans (Neue Montreal proxy)</p>
+  <div class="export-note">
+    Para exportar: abrir en Chrome → Screenshot de cada post → reescalar a 1080 × 1080 px para Instagram
+  </div>
+</div>
+
+</body>
+</html>
