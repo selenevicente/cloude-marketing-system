@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Riel Americano TikTok — 01 Humanización</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,400;1,700&display=swap" rel="stylesheet">
+<!--
+  ══════════════════════════════════════════
+  USO COMO OVERLAY SOBRE VIDEO:
+  1. Eliminá o comentá el div .photo
+  2. Poné background:transparent en .post
+  3. Tomá captura en pantalla completa
+  ── O en CapCut/Premiere: usá este HTML
+     como imagen PNG sobre tu clip de video
+  ══════════════════════════════════════════
+-->
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background: #0A0A0A;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 40px 20px;
+  font-family: 'Plus Jakarta Sans', 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* Phone preview wrapper — escala de 1080×1920 → 405×720 para el browser */
+.scale-wrap {
+  position: relative;
+  width: 405px;
+  height: 720px;
+  overflow: hidden;
+  flex-shrink: 0;
+  border-radius: 6px;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.06);
+}
+
+.post {
+  width: 1080px;
+  height: 1920px;
+  transform: scale(0.375);
+  transform-origin: top left;
+  position: absolute;
+  top: 0; left: 0;
+  overflow: hidden;
+}
+
+/* ── FOTO DE FONDO ── */
+/* Para usar como overlay: elimina este div o ponle display:none  */
+.photo {
+  position: absolute;
+  inset: 0;
+  background: url('../../instagram/riel-americano/posts/photos/post5-hands.jpg') center 40% / cover no-repeat;
+  /* Duotono cálido: B&W con leve tono sepia documental */
+  filter: grayscale(88%) contrast(1.06) brightness(0.88) sepia(15%);
+}
+
+/* ── OVERLAY GRADIENTE — funciona sobre cualquier video ── */
+.overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom,
+      rgba(4,2,1,0.85)  0%,
+      rgba(4,2,1,0.55)  12%,
+      rgba(4,2,1,0.08)  28%,
+      rgba(4,2,1,0.04)  48%,
+      rgba(4,2,1,0.28)  65%,
+      rgba(4,2,1,0.80)  80%,
+      rgba(4,2,1,0.97)  100%);
+}
+
+/* ── CONTENIDO ── */
+/* Márgenes respetan safe zones de TikTok:
+   top 140px · right 210px (sidebar) · bottom 270px · left 70px */
+.inner {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  padding: 140px 210px 270px 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Top-left — pequeño, rojo, uppercase */
+.tag {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #C8102E;
+  line-height: 1;
+}
+
+/* Bloque de título — se posiciona en el centro visual */
+.title-block {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.title {
+  font-size: 92px;
+  font-weight: 800;
+  line-height: 1.03;
+  letter-spacing: -2.5px;
+  color: #FFFFFF;
+}
+
+.accent-line {
+  width: 52px;
+  height: 3px;
+  background: #C8102E;
+}
+
+/* Zona de caption — zona inferior visible en TikTok */
+.caption-zone {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.handle {
+  font-size: 34px;
+  font-weight: 700;
+  color: #FFFFFF;
+  letter-spacing: -0.4px;
+}
+
+.hashtags {
+  font-size: 26px;
+  font-weight: 400;
+  color: rgba(255,255,255,0.48);
+  line-height: 1.65;
+}
+</style>
+</head>
+<body>
+<div class="scale-wrap">
+<div class="post">
+
+  <!-- Foto de stock — reemplazá con tu video en producción -->
+  <div class="photo"></div>
+  <div class="overlay"></div>
+
+  <div class="inner">
+
+    <div class="tag">Detrás de la ventana · Ep. 03</div>
+
+    <div class="title-block">
+      <h1 class="title">42 años<br>haciendo<br>la luz<br>de un país.</h1>
+      <div class="accent-line"></div>
+    </div>
+
+    <div class="caption-zone">
+      <span class="handle">@rielamericano</span>
+      <span class="hashtags">#PersonasRiel #DetrásDeLaVentana<br>#HechoEnArgentina</span>
+    </div>
+
+  </div>
+</div>
+</div>
+</body>
+</html>
