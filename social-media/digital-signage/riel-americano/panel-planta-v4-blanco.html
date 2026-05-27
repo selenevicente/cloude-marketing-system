@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<!--
+  PANEL DIGITAL RIEL AMERICANO · v4 BLANCO MODERNO
+  ============================================================
+  Fondo blanco, tipografía dark, look editorial contemporáneo.
+  Resolución nativa: 1920 x 1080 (Full HD, 16:9)
+
+  PARA GENERAR PNG:
+  -----------------
+  1. Abrí en Chrome, F12 → Ctrl+Shift+P → "Capture full size screenshot"
+  2. O: chromium --headless --screenshot --window-size=1920,1080 panel-planta-v4.html
+-->
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Panel Planta · Riel Americano</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    width: 1920px;
+    height: 1080px;
+    overflow: hidden;
+    background: #F2F2F2;
+    font-family: 'Manrope', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    color: #111111;
+  }
+
+  .screen {
+    width: 1920px;
+    height: 1080px;
+    background: #F2F2F2;
+    display: grid;
+    grid-template-columns: 820px 1fr;
+    grid-template-rows: 1fr;
+  }
+
+  /* =====================================================
+     PANEL IZQUIERDO · HORA + FECHA + CLIMA
+     ===================================================== */
+  .left-panel {
+    background: #111111;
+    padding: 64px 72px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .clock-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .label-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .label-tag-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #C8102E;
+    animation: pulse-dot 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.7); }
+  }
+
+  .label-tag-text {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    color: #888888;
+    text-transform: uppercase;
+  }
+
+  .clock {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 210px;
+    font-weight: 800;
+    line-height: 0.88;
+    letter-spacing: -8px;
+    color: #FFFFFF;
+  }
+
+  .clock .colon {
+    color: #C8102E;
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink { 50% { opacity: 0.15; } }
+
+  .date-row {
+    margin-top: 28px;
+    font-size: 28px;
+    font-weight: 600;
+    color: #666666;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .weather-section {
+    background: #1A1A1A;
+    border-radius: 16px;
+    padding: 28px 32px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .weather-icon { font-size: 72px; line-height: 1; }
+
+  .weather-info { flex: 1; }
+
+  .weather-temp {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 80px;
+    font-weight: 800;
+    color: #FFFFFF;
+    line-height: 1;
+    letter-spacing: -3px;
+  }
+
+  .weather-desc {
+    font-size: 24px;
+    font-weight: 700;
+    color: #CCCCCC;
+    margin-top: 2px;
+  }
+
+  .weather-sub {
+    font-size: 16px;
+    font-weight: 500;
+    color: #666666;
+    margin-top: 4px;
+  }
+
+  /* =====================================================
+     PANEL DERECHO · RECORDATORIOS + INDICADORES
+     ===================================================== */
+  .right-panel {
+    padding: 52px 64px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  /* Zona que agrupa header + tasks y ocupa todo el espacio disponible */
+  .tasks-zone {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* --- Header --- */
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding-bottom: 24px;
+    border-bottom: 1.5px solid #E0E0E0;
+  }
+
+  .section-pill {
+    background: #C8102E;
+    color: #FFFFFF;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 4px;
+    padding: 8px 18px;
+    border-radius: 100px;
+    text-transform: uppercase;
+  }
+
+  .section-subtext {
+    font-size: 18px;
+    font-weight: 600;
+    color: #AAAAAA;
+  }
+
+  /* Tasks: flex:1 llena el espacio restante después del header */
+  .tasks {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .task {
+    flex: 1;
+    display: grid;
+    grid-template-columns: 150px 1fr 160px;
+    align-items: center;
+    gap: 24px;
+    border-bottom: 1.5px solid #E0E0E0;
+  }
+
+  .task:first-child { border-top: none; }
+
+  .task-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 42px;
+    font-weight: 700;
+    color: #111111;
+    line-height: 1;
+  }
+
+  .task-text {
+    font-size: 34px;
+    font-weight: 700;
+    color: #111111;
+    line-height: 1.15;
+  }
+
+  .task-badge {
+    justify-self: end;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 2.5px;
+    padding: 10px 18px;
+    text-transform: uppercase;
+    border-radius: 8px;
+  }
+
+  .badge-now {
+    background: #C8102E;
+    color: #FFFFFF;
+  }
+
+  .badge-next {
+    background: #FFF0F2;
+    color: #C8102E;
+    border: 2px solid #C8102E;
+  }
+
+  .badge-done {
+    background: #F2F2F2;
+    color: #BBBBBB;
+    border: 2px solid #E0E0E0;
+  }
+
+  .task.done .task-time,
+  .task.done .task-text {
+    color: #CCCCCC;
+    text-decoration: line-through;
+    text-decoration-color: #CCCCCC;
+  }
+
+  /* --- Indicadores --- */
+  .indicators {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .card {
+    background: #FFFFFF;
+    border-radius: 16px;
+    padding: 28px 30px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .card-label {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #AAAAAA;
+    text-transform: uppercase;
+  }
+
+  .card-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 70px;
+    font-weight: 800;
+    color: #111111;
+    line-height: 1;
+    letter-spacing: -2px;
+  }
+
+  .card-unit {
+    font-size: 18px;
+    font-weight: 600;
+    color: #888888;
+  }
+
+  .card.green .card-value { color: #16A34A; }
+  .card.red   .card-value { color: #C8102E; }
+</style>
+</head>
+<body>
+
+<div class="screen">
+
+  <!-- PANEL IZQUIERDO: RELOJ + CLIMA -->
+  <div class="left-panel">
+
+    <div class="clock-section">
+      <div class="label-tag">
+        <div class="label-tag-dot"></div>
+        <span class="label-tag-text">Hora local</span>
+      </div>
+      <div class="clock">14<span class="colon">:</span>32</div>
+      <div class="date-row">Miércoles 27 · Mayo 2026</div>
+    </div>
+
+    <div class="weather-section">
+      <div class="weather-icon">☀️</div>
+      <div class="weather-info">
+        <div class="weather-temp">22°</div>
+        <div class="weather-desc">Soleado · San Martín</div>
+        <div class="weather-sub">Humedad 55% · Viento 12 km/h</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PANEL DERECHO: RECORDATORIOS + INDICADORES -->
+  <div class="right-panel">
+
+    <div class="tasks-zone">
+
+      <div class="section-header">
+        <div class="section-pill">Hoy</div>
+        <div class="section-subtext">Recordatorios del turno</div>
+      </div>
+
+      <div class="tasks">
+
+        <div class="task done">
+          <div class="task-time">08:00</div>
+          <div class="task-text">Inicio de turno mañana</div>
+          <div class="task-badge badge-done">Hecho</div>
+        </div>
+
+        <div class="task">
+          <div class="task-time">14:30</div>
+          <div class="task-text">Reunión de producción · Sala técnica</div>
+          <div class="task-badge badge-now">Ahora</div>
+        </div>
+
+        <div class="task">
+          <div class="task-time">16:00</div>
+          <div class="task-text">Carga de pedidos al sistema BOSS</div>
+          <div class="task-badge badge-next">Próximo</div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="indicators">
+
+      <div class="card">
+        <div class="card-label">Producidas hoy</div>
+        <div class="card-value">412</div>
+        <div class="card-unit">cortinas</div>
+      </div>
+
+      <div class="card green">
+        <div class="card-label">Sin incidentes</div>
+        <div class="card-value">237</div>
+        <div class="card-unit">días seguros</div>
+      </div>
+
+      <div class="card red">
+        <div class="card-label">Meta del mes</div>
+        <div class="card-value">84%</div>
+        <div class="card-unit">14.230 / 17.000</div>
+      </div>
+
+      <div class="card">
+        <div class="card-label">Clima interno</div>
+        <div class="card-value">4.5</div>
+        <div class="card-unit">de 5 estrellas</div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+</body>
+</html>
