@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RIEL TE CUENTA · Nº 03 · Marzo 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: #F1F3F4;
+  font-family: 'Plus Jakarta Sans', 'Helvetica Neue', Arial, sans-serif;
+  color: #1A1A1A;
+  min-height: 100vh;
+}
+
+/* ══════════════════════════════
+   GMAIL CHROME MOCK
+══════════════════════════════ */
+.gmail-bar {
+  background: #FFFFFF;
+  border-bottom: 1px solid #E0E0E0;
+  padding: 0 20px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.gmail-logo {
+  font-size: 22px;
+  font-weight: 400;
+  color: #5F6368;
+  letter-spacing: -0.5px;
+  flex-shrink: 0;
+  user-select: none;
+}
+.gm-G { color: #4285F4; font-weight: 700; }
+.gm-m { color: #EA4335; font-weight: 700; }
+.gm-a { color: #FBBC04; font-weight: 700; }
+.gm-i { color: #4285F4; font-weight: 700; }
+.gm-l { color: #34A853; font-weight: 700; }
+
+.gmail-search {
+  flex: 1;
+  max-width: 700px;
+  height: 46px;
+  background: #EAF1FB;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  gap: 12px;
+  font-size: 14px;
+  color: #5F6368;
+}
+.gmail-search-icon { font-size: 18px; color: #444; }
+
+.gmail-avatar {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: #C8102E;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+/* ── MAIN LAYOUT ── */
+.gmail-main {
+  display: flex;
+  min-height: calc(100vh - 64px);
+}
+
+/* Sidebar */
+.gmail-sidebar {
+  width: 256px;
+  flex-shrink: 0;
+  padding: 8px 0;
+  background: #F1F3F4;
+}
+
+.compose-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 8px 12px 16px;
+  padding: 16px 24px;
+  background: #FFFFFF;
+  border-radius: 16px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.14), 0 1px 2px rgba(0,0,0,0.12);
+  font-size: 14px;
+  font-weight: 500;
+  color: #444;
+  cursor: pointer;
+}
+.compose-icon { font-size: 20px; }
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 6px 16px 6px 24px;
+  font-size: 14px;
+  color: #444;
+  border-radius: 0 24px 24px 0;
+  margin-right: 16px;
+  cursor: pointer;
+  height: 36px;
+}
+.sidebar-item:hover { background: #E8EAED; }
+.sidebar-item.active {
+  background: #D3E3FD;
+  color: #041E49;
+  font-weight: 700;
+}
+.sidebar-icon { font-size: 16px; width: 20px; text-align: center; }
+.sidebar-count {
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+/* Email content panel */
+.email-panel {
+  flex: 1;
+  padding: 20px 24px;
+  overflow-x: hidden;
+}
+
+.email-card {
+  background: #FFFFFF;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.10), 0 2px 8px rgba(0,0,0,0.06);
+  max-width: 920px;
+}
+
+/* Email meta header */
+.email-meta {
+  padding: 22px 28px 16px;
+  border-bottom: 1px solid #F0F0F0;
+}
+
+.email-subject-line {
+  font-size: 20px;
+  font-weight: 400;
+  color: #202124;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.badge-internal {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  background: #FCE8E6;
+  color: #C8102E;
+  padding: 3px 10px;
+  border-radius: 12px;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.email-from-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.from-avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  background: #C8102E;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  flex-shrink: 0;
+  line-height: 1.1;
+}
+
+.from-details { flex: 1; }
+.from-name { font-size: 14px; font-weight: 600; color: #202124; }
+.from-addr { font-size: 12px; color: #777; margin-top: 1px; }
+.email-timestamp { font-size: 12px; color: #777; white-space: nowrap; }
+
+/* ══════════════════════════════
+   NEWSLETTER BODY
+══════════════════════════════ */
+.newsletter {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* ── HEADER ── */
+.nl-header {
+  background: #C8102E;
+  padding: 34px 40px 30px;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.header-logo-wrap {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.18);
+  border: 2px solid rgba(255,255,255,0.35);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.hl-r { font-size: 12px; font-weight: 900; color: #fff; line-height: 1; letter-spacing: 0.5px; }
+.hl-a { font-size: 4.5px; font-weight: 500; color: rgba(255,255,255,0.82); letter-spacing: 1.3px; margin-top: 2px; }
+
+.header-text {}
+.nl-title {
+  font-size: 30px;
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: -0.5px;
+  line-height: 1;
+  margin-bottom: 6px;
+}
+.nl-subtitle {
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.65);
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+}
+
+/* ── EDITORIAL ── */
+.nl-editorial {
+  padding: 32px 40px 28px;
+  border-bottom: 1px solid #EDE9E4;
+}
+
+.section-eyebrow {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: #C8102E;
+  margin-bottom: 12px;
+}
+
+.editorial-headline {
+  font-size: 25px;
+  font-weight: 800;
+  color: #1A1A1A;
+  letter-spacing: -0.5px;
+  line-height: 1.18;
+  margin-bottom: 18px;
+}
+
+.editorial-body {
+  font-size: 14px;
+  line-height: 1.78;
+  color: #4A4A4A;
+  margin-bottom: 13px;
+}
+.editorial-body:last-of-type { margin-bottom: 0; }
+
+.editorial-sig {
+  margin-top: 18px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #ABABAB;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+/* ── SECTION HEADER ── */
+.sec-head {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 28px 40px 0;
+}
+.sec-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #1A1A1A;
+  white-space: nowrap;
+}
+.sec-rule {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, #D8D3CC, transparent);
+}
+
+/* ── NOVEDADES ── */
+.nl-novedades {
+  padding: 20px 40px 28px;
+  border-bottom: 1px solid #EDE9E4;
+}
+
+.news-card {
+  display: flex;
+  gap: 18px;
+  padding-bottom: 22px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid #F3F0ED;
+}
+.news-card:last-child { padding-bottom: 0; margin-bottom: 0; border-bottom: none; }
+
+.news-photo {
+  width: 176px;
+  height: 116px;
+  object-fit: cover;
+  border-radius: 5px;
+  flex-shrink: 0;
+  display: block;
+  background: #DDD;
+}
+
+.news-body-wrap {}
+.news-cat {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #C8102E;
+  margin-bottom: 6px;
+}
+.news-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1A1A1A;
+  line-height: 1.28;
+  margin-bottom: 8px;
+}
+.news-text {
+  font-size: 13px;
+  color: #666;
+  line-height: 1.68;
+}
+
+/* ── HUGO PROFILE ── */
+.nl-hugo {
+  background: #FAFAF8;
+  border-bottom: 1px solid #EDE9E4;
+}
+.hugo-inner {
+  display: flex;
+  gap: 22px;
+  padding: 24px 40px;
+  align-items: flex-start;
+}
+.hugo-photo {
+  width: 138px;
+  height: 165px;
+  object-fit: cover;
+  object-position: center 20%;
+  border-radius: 5px;
+  flex-shrink: 0;
+  display: block;
+  background: #DDD;
+}
+.hugo-text-wrap {}
+.hugo-cat {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: #C8102E;
+  margin-bottom: 6px;
+}
+.hugo-name {
+  font-size: 18px;
+  font-weight: 800;
+  color: #1A1A1A;
+  letter-spacing: -0.4px;
+  margin-bottom: 12px;
+  line-height: 1.15;
+}
+.hugo-body {
+  font-size: 13px;
+  color: #555;
+  line-height: 1.72;
+  margin-bottom: 10px;
+}
+.hugo-quote {
+  border-left: 3px solid #C8102E;
+  padding-left: 14px;
+  margin-top: 14px;
+  font-size: 13px;
+  font-style: italic;
+  color: #333;
+  font-weight: 500;
+  line-height: 1.60;
+}
+
+/* ── AGENDA ── */
+.nl-agenda {
+  padding: 20px 40px 28px;
+  border-bottom: 1px solid #EDE9E4;
+}
+.agenda-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 11px 0;
+  border-bottom: 1px dashed #EDEBE7;
+}
+.agenda-item:last-child { border-bottom: none; padding-bottom: 0; }
+.agenda-chip {
+  background: #C8102E;
+  color: white;
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  text-align: center;
+  min-width: 58px;
+  margin-top: 2px;
+}
+.agenda-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1A1A1A;
+  line-height: 1.3;
+  margin-bottom: 2px;
+}
+.agenda-meta {
+  font-size: 12px;
+  color: #999;
+}
+
+/* ── INDICATORS ── */
+.nl-indicators {
+  padding: 20px 40px 28px;
+  border-bottom: 1px solid #EDE9E4;
+}
+.indicators-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.ind-card {
+  background: #F7F5F2;
+  border-radius: 7px;
+  padding: 18px 20px;
+  border-left: 3px solid #C8102E;
+}
+.ind-num {
+  font-size: 28px;
+  font-weight: 800;
+  color: #C8102E;
+  line-height: 1;
+  letter-spacing: -1px;
+  margin-bottom: 4px;
+}
+.ind-label {
+  font-size: 11px;
+  font-weight: 500;
+  color: #888;
+  line-height: 1.4;
+}
+
+/* ── BIRTHDAYS ── */
+.nl-birthdays {
+  padding: 20px 40px 28px;
+  border-bottom: 1px solid #EDE9E4;
+}
+.bday-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 0;
+  border-bottom: 1px solid #F3F0ED;
+}
+.bday-item:last-child { border-bottom: none; padding-bottom: 0; }
+.bday-icon { font-size: 18px; flex-shrink: 0; }
+.bday-name { font-size: 14px; font-weight: 600; color: #1A1A1A; flex: 1; }
+.bday-date {
+  font-size: 11px;
+  font-weight: 600;
+  color: #C8102E;
+  background: #FCE8E6;
+  padding: 3px 9px;
+  border-radius: 10px;
+  white-space: nowrap;
+}
+.bday-dept {
+  font-size: 11.5px;
+  color: #ABABAB;
+  min-width: 110px;
+  text-align: right;
+}
+
+/* ── FOOTER ── */
+.nl-footer {
+  background: #181818;
+  padding: 30px 40px;
+  text-align: center;
+}
+.footer-logo-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.footer-circle {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: #C8102E;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.fc-r { font-size: 10px; font-weight: 900; color: #fff; line-height: 1; }
+.fc-a { font-size: 3.5px; font-weight: 500; color: rgba(255,255,255,0.85); letter-spacing: 1.2px; margin-top: 2px; }
+.footer-brand {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.45);
+}
+.footer-address {
+  font-size: 11px;
+  color: rgba(255,255,255,0.28);
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+.footer-cta {
+  font-size: 12px;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.7;
+}
+.footer-email {
+  color: #C8102E;
+  font-weight: 600;
+}
+</style>
+</head>
+<body>
+
+<!-- ── GMAIL TOP BAR ── -->
+<div class="gmail-bar">
+  <div class="gmail-logo">
+    <span class="gm-G">G</span><span class="gm-m">m</span><span class="gm-a">a</span><span class="gm-i">i</span><span class="gm-l">l</span>
+  </div>
+  <div class="gmail-search">
+    <span class="gmail-search-icon">🔍</span>
+    Buscar en el correo
+  </div>
+  <div class="gmail-avatar">SV</div>
+</div>
+
+<!-- ── GMAIL MAIN ── -->
+<div class="gmail-main">
+
+  <!-- Sidebar -->
+  <div class="gmail-sidebar">
+    <div class="compose-btn">
+      <span class="compose-icon">✏️</span>
+      Redactar
+    </div>
+    <div class="sidebar-item active">
+      <span class="sidebar-icon">📥</span> Recibidos
+      <span class="sidebar-count">3</span>
+    </div>
+    <div class="sidebar-item">
+      <span class="sidebar-icon">⭐</span> Destacados
+    </div>
+    <div class="sidebar-item">
+      <span class="sidebar-icon">🕐</span> Pospuestos
+    </div>
+    <div class="sidebar-item">
+      <span class="sidebar-icon">📤</span> Enviados
+    </div>
+    <div class="sidebar-item">
+      <span class="sidebar-icon">📝</span> Borradores <span class="sidebar-count">2</span>
+    </div>
+  </div>
+
+  <!-- Email panel -->
+  <div class="email-panel">
+    <div class="email-card">
+
+      <!-- Email meta header -->
+      <div class="email-meta">
+        <div class="email-subject-line">
+          RIEL TE CUENTA · Boletín interno Nº 03 · Marzo 2026
+          <span class="badge-internal">Interno</span>
+        </div>
+        <div class="email-from-row">
+          <div class="from-avatar">
+            <span style="letter-spacing:0;">RIEL</span>
+            <span style="font-size:3.5px;letter-spacing:1px;">AMER.</span>
+          </div>
+          <div class="from-details">
+            <div class="from-name">Riel Americano &lt;rieltecuenta@rielamericano.com.ar&gt;</div>
+            <div class="from-addr">Para: todo-el-equipo@rielamericano.com.ar</div>
+          </div>
+          <div class="email-timestamp">Vie, 28 mar 2026, 09:15</div>
+        </div>
+      </div>
+
+      <!-- ══════════════════════════════
+           NEWSLETTER BODY
+      ══════════════════════════════ -->
+      <div class="newsletter">
+
+        <!-- HEADER -->
+        <div class="nl-header">
+          <div class="header-logo-wrap">
+            <span class="hl-r">RIEL</span>
+            <span class="hl-a">AMERICANO</span>
+          </div>
+          <div class="header-text">
+            <div class="nl-title">RIEL TE CUENTA</div>
+            <div class="nl-subtitle">Boletín interno · Marzo 2026 · Nº 03</div>
+          </div>
+        </div>
+
+        <!-- EDITORIAL -->
+        <div class="nl-editorial">
+          <div class="section-eyebrow">Editorial · La Dirección</div>
+          <h2 class="editorial-headline">Un mes que abrió ventanas.</h2>
+          <p class="editorial-body">Marzo fue un mes para enmarcar. Por primera vez en nuestra historia, superamos las 14.000 cortinas en un solo mes: un logro que no pertenece a una sola persona sino a cada mano, cada máquina y cada turno que hizo posible ese número.</p>
+          <p class="editorial-body">A eso se suma el lanzamiento oficial del Sistema BOSS para nuestra red de distribuidores. Un hito tecnológico que posiciona a Riel Americano en un lugar que pocos en Argentina se animan a ocupar: la domótica de fabricación nacional.</p>
+          <p class="editorial-body">Gracias por hacer de este mes algo que vamos a recordar. Como siempre, Riel te cuenta lo que pasa entre nosotros, porque este boletín es de todos.</p>
+          <div class="editorial-sig">— La Dirección · Marzo 2026</div>
+        </div>
+
+        <!-- NOVEDADES -->
+        <div class="sec-head">
+          <span class="sec-label">Novedades del mes</span>
+          <div class="sec-rule"></div>
+        </div>
+
+        <div class="nl-novedades">
+
+          <div class="news-card">
+            <img class="news-photo" src="../../instagram/riel-americano/posts/photos/post6-factory.jpg" alt="Planta Riel Americano">
+            <div class="news-body-wrap">
+              <div class="news-cat">Producción</div>
+              <div class="news-title">Récord histórico: 547 cortinas en un solo día.</div>
+              <p class="news-text">El miércoles 12 de marzo la planta alcanzó su máximo histórico: 547 cortinas producidas en un solo turno. El equipo de producción festejó en el comedor. Seguimos rompiendo nuestros propios récords.</p>
+            </div>
+          </div>
+
+          <div class="news-card">
+            <img class="news-photo" src="../../instagram/riel-americano/posts/photos/post2-smart.jpg" alt="Sistema BOSS">
+            <div class="news-body-wrap">
+              <div class="news-cat">Tecnología</div>
+              <div class="news-title">BOSS ya disponible para distribuidores.</div>
+              <p class="news-text">El Sistema BOSS 2.0 está disponible para toda la red de distribuidores autorizados. Control por app, hasta 30 dispositivos, 20 escenas programables. Compatible con Alexa, Google y Siri.</p>
+            </div>
+          </div>
+
+          <div class="news-card">
+            <img class="news-photo" src="../../instagram/riel-americano/posts/photos/post4-living.jpg" alt="Casa FOA Córdoba">
+            <div class="news-body-wrap">
+              <div class="news-cat">Eventos</div>
+              <div class="news-title">Riel Americano en Casa FOA Córdoba 2026.</div>
+              <p class="news-text">Del 15 al 30 de marzo participamos como sponsor oficial en Casa FOA Córdoba. El espacio Nº 12, ambientado con la línea Sunscreen VX, fue uno de los más fotografiados de la muestra.</p>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- HUGO PROFILE -->
+        <div class="sec-head">
+          <span class="sec-label">Una historia, una ventana</span>
+          <div class="sec-rule"></div>
+        </div>
+
+        <div class="nl-hugo">
+          <div class="hugo-inner">
+            <img class="hugo-photo" src="../../instagram/riel-americano/posts/photos/post5-hands.jpg" alt="Hugo Fernández">
+            <div class="hugo-text-wrap">
+              <div class="hugo-cat">Perfil del mes</div>
+              <div class="hugo-name">Hugo Fernández<br>
+                <span style="font-size:12px;font-weight:500;color:#999;letter-spacing:0;">Jefe de planta · 42 años en Riel</span>
+              </div>
+              <p class="hugo-body">Con 42 años en la empresa, Hugo es una de esas personas que conocen Riel Americano mejor que cualquier manual. Entró joven, aprendió el oficio desde cero y hoy dirige la planta con la calma de quien ya lo vio todo.</p>
+              <p class="hugo-body">Su secreto, dice, es simple: sabe escuchar las máquinas. Cuando algo no está bien, lo nota antes que nadie. Antes de irse cada noche, da una última vuelta por el piso.</p>
+              <div class="hugo-quote">"Una cortina bien hecha se nota cuando se levanta el sol."</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- AGENDA -->
+        <div class="sec-head">
+          <span class="sec-label">Agenda de abril</span>
+          <div class="sec-rule"></div>
+        </div>
+
+        <div class="nl-agenda">
+          <div class="agenda-item">
+            <div class="agenda-chip">05 ABR</div>
+            <div>
+              <div class="agenda-title">Asamblea Riel Nº 4</div>
+              <div class="agenda-meta">Comedor de planta · 10:00 hs</div>
+            </div>
+          </div>
+          <div class="agenda-item">
+            <div class="agenda-chip">12 ABR</div>
+            <div>
+              <div class="agenda-title">Visita de prensa · Living Magazine</div>
+              <div class="agenda-meta">Planta principal · 15:00 hs</div>
+            </div>
+          </div>
+          <div class="agenda-item">
+            <div class="agenda-chip">20 ABR</div>
+            <div>
+              <div class="agenda-title">Capacitación BOSS 2.0</div>
+              <div class="agenda-meta">Sala técnica · 09:30 hs</div>
+            </div>
+          </div>
+          <div class="agenda-item">
+            <div class="agenda-chip">28 ABR</div>
+            <div>
+              <div class="agenda-title">Encuentro Estudio Riel</div>
+              <div class="agenda-meta">18:00 hs · A confirmar sede</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- INDICATORS -->
+        <div class="sec-head">
+          <span class="sec-label">Indicadores del mes</span>
+          <div class="sec-rule"></div>
+        </div>
+
+        <div class="nl-indicators">
+          <div class="indicators-grid">
+            <div class="ind-card">
+              <div class="ind-num">14.230</div>
+              <div class="ind-label">cortinas producidas en marzo</div>
+            </div>
+            <div class="ind-card">
+              <div class="ind-num">237</div>
+              <div class="ind-label">días sin incidentes de seguridad</div>
+            </div>
+            <div class="ind-card">
+              <div class="ind-num">+12%</div>
+              <div class="ind-label">vs. febrero 2026</div>
+            </div>
+            <div class="ind-card">
+              <div class="ind-num">⭐ 4.5</div>
+              <div class="ind-label">clima interno · encuesta mensual</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- BIRTHDAYS -->
+        <div class="sec-head">
+          <span class="sec-label">Cumpleaños de abril</span>
+          <div class="sec-rule"></div>
+        </div>
+
+        <div class="nl-birthdays">
+          <div class="bday-item">
+            <span class="bday-icon">🎂</span>
+            <span class="bday-name">Andrea Solís</span>
+            <span class="bday-date">2 de abril</span>
+            <span class="bday-dept">Producción</span>
+          </div>
+          <div class="bday-item">
+            <span class="bday-icon">🎂</span>
+            <span class="bday-name">Martín Herrera</span>
+            <span class="bday-date">8 de abril</span>
+            <span class="bday-dept">Comercial</span>
+          </div>
+          <div class="bday-item">
+            <span class="bday-icon">🎂</span>
+            <span class="bday-name">Valeria Torres</span>
+            <span class="bday-date">14 de abril</span>
+            <span class="bday-dept">Diseño</span>
+          </div>
+          <div class="bday-item">
+            <span class="bday-icon">🎂</span>
+            <span class="bday-name">Federico Gómez</span>
+            <span class="bday-date">22 de abril</span>
+            <span class="bday-dept">Distribución</span>
+          </div>
+          <div class="bday-item">
+            <span class="bday-icon">🎂</span>
+            <span class="bday-name">Carolina Ríos</span>
+            <span class="bday-date">29 de abril</span>
+            <span class="bday-dept">Administración</span>
+          </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="nl-footer">
+          <div class="footer-logo-row">
+            <div class="footer-circle">
+              <span class="fc-r">RIEL</span>
+              <span class="fc-a">AMERICANO</span>
+            </div>
+            <span class="footer-brand">Riel Americano</span>
+          </div>
+          <div class="footer-address">
+            Riel Americano S.A. · Buenos Aires, Argentina<br>
+            Fabricación y comercialización de cortinas desde 1967
+          </div>
+          <div class="footer-cta">
+            ¿Tenés una historia para compartir con toda la empresa?<br>
+            Escribinos a <span class="footer-email">rieltecuenta@rielamericano.com.ar</span>
+          </div>
+        </div>
+
+      </div><!-- /newsletter -->
+    </div><!-- /email-card -->
+  </div><!-- /email-panel -->
+</div><!-- /gmail-main -->
+
+</body>
+</html>
