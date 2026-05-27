@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<!--
+  PANEL DIGITAL RIEL AMERICANO · v3 ULTRA LEGIBLE
+  ============================================================
+  Diseñado para Smart TV 55" instalada en planta industrial.
+  Lectura óptima a 2-6 metros de distancia.
+  Sin logo. Sin decoración. Solo información grande y clara.
+  Resolución nativa: 1920 x 1080 (Full HD, 16:9)
+
+  PARA GENERAR PNG:
+  -----------------
+  1. Abrí este archivo en Chrome (sí o sí Chrome, no Firefox).
+  2. Maximizá la ventana (full screen, F11).
+  3. F12 → "..." (arriba derecha del DevTools) → "Run command" (Ctrl+Shift+P).
+  4. Escribí: "Capture full size screenshot" → Enter.
+  5. Se baja un PNG de 1920x1080. Listo.
+
+  PARA INSTALAR EN LA TV REAL:
+  ----------------------------
+  · Samsung Tizen / LG WebOS: subir el HTML al browser de la TV.
+  · Raspberry Pi: chromium-browser --kiosk panel-planta-v3-ultra-legible.html
+  · Cualquier mini PC con HDMI: abrí Chrome en kiosk mode.
+-->
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Panel Planta · Riel Americano</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800;900&family=JetBrains+Mono:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    width: 100%;
+    height: 100%;
+    background: #0A0A0A;
+    font-family: 'Manrope', sans-serif;
+    color: #FFFFFF;
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* Pantalla 16:9 - 1920x1080 nativo */
+  .screen {
+    width: 100vw;
+    height: 100vh;
+    max-width: 1920px;
+    max-height: 1080px;
+    aspect-ratio: 16 / 9;
+    margin: 0 auto;
+    background: #0A0A0A;
+    display: grid;
+    grid-template-rows: 46% 32% 22%;
+    position: relative;
+  }
+
+  /* =========================================================
+     ZONA 1 · HORA + FECHA + CLIMA (46%)
+     ========================================================= */
+  .zone-hero {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    padding: 50px 70px 30px;
+    gap: 60px;
+    border-bottom: 2px solid #1F1F1F;
+  }
+
+  .clock-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .clock-label {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 6px;
+    color: #C8102E;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+  }
+
+  .clock {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 230px;
+    font-weight: 800;
+    line-height: 0.9;
+    letter-spacing: -8px;
+    color: #FFFFFF;
+  }
+
+  .clock .colon {
+    color: #C8102E;
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    50% { opacity: 0.25; }
+  }
+
+  .date {
+    font-size: 38px;
+    font-weight: 700;
+    color: #C7C7C7;
+    margin-top: 18px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+  }
+
+  /* Bloque clima */
+  .weather-block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    border-left: 2px solid #1F1F1F;
+    padding-left: 55px;
+  }
+
+  .weather-label {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 6px;
+    color: #C8102E;
+    margin-bottom: 14px;
+    text-transform: uppercase;
+  }
+
+  .weather-main {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    margin-bottom: 16px;
+  }
+
+  .weather-icon {
+    font-size: 110px;
+    line-height: 1;
+  }
+
+  .weather-temp {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 130px;
+    font-weight: 800;
+    line-height: 0.95;
+    color: #FFFFFF;
+  }
+
+  .weather-desc {
+    font-size: 34px;
+    font-weight: 700;
+    color: #FFFFFF;
+    margin-bottom: 6px;
+  }
+
+  .weather-location {
+    font-size: 22px;
+    font-weight: 600;
+    color: #8A8A8A;
+    letter-spacing: 0.5px;
+  }
+
+  /* =========================================================
+     ZONA 2 · RECORDATORIOS DEL DÍA (32%)
+     ========================================================= */
+  .zone-tasks {
+    padding: 32px 70px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    border-bottom: 2px solid #1F1F1F;
+  }
+
+  .zone-title {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 6px;
+  }
+
+  .zone-title-bar {
+    width: 8px;
+    height: 36px;
+    background: #C8102E;
+  }
+
+  .zone-title-text {
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: 4px;
+    color: #FFFFFF;
+    text-transform: uppercase;
+  }
+
+  .tasks {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .task {
+    display: grid;
+    grid-template-columns: 180px 1fr auto;
+    align-items: center;
+    gap: 32px;
+    padding: 14px 0;
+  }
+
+  .task-time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 46px;
+    font-weight: 800;
+    color: #FFFFFF;
+    line-height: 1;
+  }
+
+  .task-text {
+    font-size: 36px;
+    font-weight: 700;
+    color: #FFFFFF;
+    line-height: 1.1;
+  }
+
+  .task-status {
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    padding: 10px 20px;
+    text-transform: uppercase;
+    border-radius: 4px;
+  }
+
+  .task-status.now {
+    background: #C8102E;
+    color: #FFFFFF;
+  }
+
+  .task-status.next {
+    background: transparent;
+    color: #C8102E;
+    border: 2px solid #C8102E;
+  }
+
+  .task-status.done {
+    background: transparent;
+    color: #4A4A4A;
+    border: 2px solid #2A2A2A;
+  }
+
+  .task.done .task-time,
+  .task.done .task-text {
+    color: #4A4A4A;
+    text-decoration: line-through;
+    text-decoration-thickness: 2px;
+  }
+
+  /* =========================================================
+     ZONA 3 · INDICADORES (22%)
+     ========================================================= */
+  .zone-indicators {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background: #0A0A0A;
+  }
+
+  .indicator {
+    padding: 22px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    border-right: 2px solid #1F1F1F;
+  }
+
+  .indicator:last-child { border-right: none; }
+
+  .ind-label {
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #8A8A8A;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .ind-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 72px;
+    font-weight: 800;
+    color: #FFFFFF;
+    line-height: 1;
+    letter-spacing: -2px;
+  }
+
+  .ind-unit {
+    font-size: 28px;
+    font-weight: 700;
+    color: #C7C7C7;
+    margin-top: 4px;
+  }
+
+  .indicator.highlight .ind-value { color: #C8102E; }
+  .indicator.good .ind-value { color: #4ADE80; }
+</style>
+</head>
+
+<body>
+
+<div class="screen">
+
+  <!-- ZONA 1 · HORA + CLIMA -->
+  <section class="zone-hero">
+
+    <div class="clock-block">
+      <div class="clock-label">HORA</div>
+      <div class="clock">14<span class="colon">:</span>32</div>
+      <div class="date">Miércoles 27 · Mayo 2026</div>
+    </div>
+
+    <div class="weather-block">
+      <div class="weather-label">CLIMA · SAN MARTÍN</div>
+      <div class="weather-main">
+        <div class="weather-icon">☀️</div>
+        <div class="weather-temp">22°</div>
+      </div>
+      <div class="weather-desc">Soleado</div>
+      <div class="weather-location">Humedad 55% · Viento 12 km/h</div>
+    </div>
+
+  </section>
+
+  <!-- ZONA 2 · RECORDATORIOS DEL DÍA -->
+  <section class="zone-tasks">
+
+    <div class="zone-title">
+      <div class="zone-title-bar"></div>
+      <div class="zone-title-text">RECORDATORIOS DE HOY</div>
+    </div>
+
+    <div class="tasks">
+
+      <div class="task done">
+        <div class="task-time">08:00</div>
+        <div class="task-text">Inicio de turno mañana</div>
+        <div class="task-status done">Hecho</div>
+      </div>
+
+      <div class="task">
+        <div class="task-time">14:30</div>
+        <div class="task-text">Reunión de producción · Sala técnica</div>
+        <div class="task-status now">Ahora</div>
+      </div>
+
+      <div class="task">
+        <div class="task-time">16:00</div>
+        <div class="task-text">Carga de pedidos al sistema BOSS</div>
+        <div class="task-status next">Próximo</div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- ZONA 3 · INDICADORES -->
+  <section class="zone-indicators">
+
+    <div class="indicator">
+      <div class="ind-label">Producidas hoy</div>
+      <div class="ind-value">412</div>
+      <div class="ind-unit">cortinas</div>
+    </div>
+
+    <div class="indicator good">
+      <div class="ind-label">Sin incidentes</div>
+      <div class="ind-value">237</div>
+      <div class="ind-unit">días seguros</div>
+    </div>
+
+    <div class="indicator highlight">
+      <div class="ind-label">Meta del mes</div>
+      <div class="ind-value">84%</div>
+      <div class="ind-unit">14.230 / 17.000</div>
+    </div>
+
+    <div class="indicator">
+      <div class="ind-label">Clima interno</div>
+      <div class="ind-value">4.5</div>
+      <div class="ind-unit">de 5 estrellas</div>
+    </div>
+
+  </section>
+
+</div>
+
+</body>
+</html>
